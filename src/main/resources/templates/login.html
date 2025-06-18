@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+    <head>
+        <title>Spring Security Example </title>
+        <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    </head>
+    <body>
+        <div th:if="${registerSuccess}" th:text="${registerSuccess}" style="color:red"></div>
+        <div th:if="${param.error}">
+            Invalid username and password.
+        </div>
+        <div th:if="${param.logout}">
+            You have been logged out.
+        </div>
+        <form th:action="@{/login}" method="post">
+            <div><label> User Name : <input type="text" name="username"/> </label></div>
+            <div><label> Password: <input type="password" name="password"/> </label></div>
+            <!-- Google reCAPTCHA widget -->
+            <div class="g-recaptcha"  th:data-sitekey="${recaptchaSiteKey}"></div>
+            <br/>
+            <button type="submit">Login</button>
+            <div><input type="submit" value="Sign In"/></div>
+        </form>
+         <p>Click <a th:href="@{/register}">here</a> to see a greeting.</p> 
+    </body>
+</html>

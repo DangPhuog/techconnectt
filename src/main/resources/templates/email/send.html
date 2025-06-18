@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Gửi Email</title>
+</head>
+<body>
+    <h2>Gửi Email</h2>
+     <div th:if="${success}" th:text="${success}" style="color:red"></div>
+     <div th:if="${error}" th:text="${error}" style="color:red"></div>
+    <form th:action="@{/send}" th:object="${send}" method="post">
+        <label for="to">Email người nhận:</label><br>
+        <input type="email" id="to" th:field="*{to}"><br><br>
+        <p th:each="error : ${#fields.errors('to')}" 
+                      th:text="${error}">Validation error</p>
+
+        <label for="subject">Tiêu đề:</label><br>
+        <input type="text" id="subject" th:field="*{subject}"><br><br>
+        <p th:each="error : ${#fields.errors('subject')}" 
+                      th:text="${error}">Validation error</p>
+
+        <label for="body">Nội dung:</label><br>
+        <textarea id="body" th:field="*{body}" rows="6" cols="40"></textarea><br><br>
+        <p th:each="error : ${#fields.errors('body')}" 
+                      th:text="${error}">Validation error</p>
+
+        <input type="submit" value="Gửi Email">
+    </form>
+</body>
+</html>

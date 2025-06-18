@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Tạo CV</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+</head>
+<body class="bg-gray-100 p-8">  
+    <div class="max-w-3xl mx-auto bg-white shadow-md rounded-lg p-6">
+        <div th:if="${success}" th:text="${success}" style="color:red"></div>
+        <h1 class="text-2xl font-bold mb-4">Tạo CV cá nhân</h1>
+        
+        <form th:action="@{/candidate/cv/create}" th:object="${add}" method="POST">
+            <div class="mb-4">
+                <label class="block font-medium">Họ tên:</label>
+                <input type="text" th:field="*{name}" class="w-full border px-3 py-2 rounded">
+                <p th:each="error : ${#fields.errors('name')}" 
+                      th:text="${error}">Validation error</p>
+            </div>
+
+            <div class="mb-4">
+                <label class="block font-medium">Email:</label>
+                <input type="email" th:field="*{email}" class="w-full border px-3 py-2 rounded">
+                <p th:each="error : ${#fields.errors('email')}" 
+                      th:text="${error}">Validation error</p>
+            </div>
+
+            <div class="mb-4">
+                <label class="block font-medium">Số điện thoại:</label>
+                <input type="text" th:field="*{phone}" class="w-full border px-3 py-2 rounded">
+                <p th:each="error : ${#fields.errors('phone')}" 
+                      th:text="${error}">Validation error</p>
+            </div>
+
+            <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">
+                Tạo CV
+            </button>
+        </form>
+    </div>
+</body>
+</html>
