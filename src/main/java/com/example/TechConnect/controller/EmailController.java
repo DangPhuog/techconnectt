@@ -5,9 +5,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 import com.example.TechConnect.model.EmailDto;
 import com.example.TechConnect.service.EmailService;
-
 import org.springframework.ui.Model;
-
 import org.springframework.stereotype.Controller;
 
 @Controller
